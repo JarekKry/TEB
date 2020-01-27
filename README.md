@@ -1,2 +1,2 @@
 # TEB
-Tworzenie witryn WWW
+Tworzenie witryn WWW.
