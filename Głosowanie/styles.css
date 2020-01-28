@@ -1,5 +1,31 @@
-body
+
+
+
+.container
 {
-	background-color: gray;
-	font-size: 20px;
+	padding-top: -50%;
+	margin: auto;
+	margin-top: 10%;
+	width: auto;
+	height: auto;
+	text-align: center;
+	font-size: 30px;
+	padding: 20px;
+
+	-webkit-box-shadow: 3px 3px 12px 5px rgba(0,0,0,0.56);
+	-moz-box-shadow: 3px 3px 12px 5px rgba(0,0,0,0.56);
+	box-shadow: 3px 3px 12px 5px rgba(0,0,0,0.56);
+
+	transition: 3s;
+	opacity: 1;
+}
+.container:focus
+{
+	margin-top: -10%;
+	opacity: 0;
+}
+
+.form-group
+{
+	width: auto;
 }
