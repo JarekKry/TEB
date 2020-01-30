@@ -9,33 +9,35 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container-sm">
 
-<form>
-  <div class="form-group">
-    <label for="KeyCodeInput">Kod jednorazowy: </label> 
-    <input type="password" class="form-control-center" id="KeyCodeInput" placeholder=""> 
-  </div>
-</form>
+<label> Głosowanie samorządowe 2020 </label> 
 
-<form>
-  <div class="form-group"> 
+<div class="form-group"> 
     <select class="form-control-center" id="PersonSelect">
-      <option> --- Wybierz kandydata ---</option>
+      <option>--- Wybierz kandydata ---</option>
       <option>1 - Konrad Kosiński </option>
       <option>2 - Marta Kowalska </option>
       <option>3 - Julia Krupa </option>
       <option>4 - Apolonia Wójcik </option>
       <option>5 - Barbara Piotrowska </option>
     </select>
+</div>
+
+<form>
+  <div class="form-group">   
+    <input type="text" class="form-control-center" id="KeyCodeInput" placeholder="Kod jednorazowy" maxlength="20" > <!-- Unique code max lenght = 20 -->
   </div>
 </form>
 
-  <div class="form-check">
-  </div>
-  <button type="submit" class="btn btn-primary">Zagłosuj</button>
+<div  id="VoteForm">
+    <button type="submit" class="btn btn-primary">Zagłosuj</button> 
+    <label class="VoteWarning">Uwaga: Oddanie głosu jest nieodwracalne.</label> 
+</div>
 
 </div>
+
+<footer>Wykonał: Jarek Krysztofiński</footer>
 
 </body>
 </html>
