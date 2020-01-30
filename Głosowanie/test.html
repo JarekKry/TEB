@@ -1,38 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="author" content="Jarek Krysztofiński">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="styles.css">
 	<title>Głosowanie</title>
 </head>
 <body>
 
-<form>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Kod jednorazowy</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Kod jednorazowy">
-  </div>
-</form>
+<div class="container-sm">
 
-<form>
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Wybierz kandydata</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>-- Wybierz kandydata -- </option>
-      <option>1 - osoba </option>
-      <option>2 - inna osoba </option>
-      <option>3 - jakas tam osoba </option>
-      <option>4 - jeszcze inna osoba </option>
-      <option>5 - tez osoba </option>
+<label> Głosowanie samorządowe 2020 </label> 
+
+<div class="form-group"> 
+    <select class="form-control-center" id="PersonSelect">
+      <option>--- Wybierz kandydata ---</option>
+      <option>1 - Konrad Kosiński </option>
+      <option>2 - Marta Kowalska </option>
+      <option>3 - Julia Krupa </option>
+      <option>4 - Apolonia Wójcik </option>
+      <option>5 - Barbara Piotrowska </option>
     </select>
+</div>
+
+<form>
+  <div class="form-group">   
+    <input type="text" class="form-control-center" id="KeyCodeInput" placeholder="Kod jednorazowy" maxlength="20" > <!-- Unique code max lenght = 20 -->
   </div>
 </form>
 
-  <div class="form-check">
-  </div>
-  <button type="submit" class="btn btn-primary">Zagłosuj</button>
+<div  id="VoteForm">
+    <button type="submit" class="btn btn-primary">Zagłosuj</button> 
+    <label class="VoteWarning">Uwaga: Oddanie głosu jest nieodwracalne.</label> 
+</div>
 
+</div>
+
+<footer>Wykonał: Jarek Krysztofiński</footer>
 
 </body>
 </html>
