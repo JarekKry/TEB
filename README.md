@@ -1,2 +1,2 @@
 # TEB
-Wersja w trakcie tworzenia
+Wersja gotowa
