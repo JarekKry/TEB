@@ -15,15 +15,23 @@ var VoteCodes =
 function SubmitVote()
 {
     var SumbitedCode = document.getElementById("KeyCodeInput").value;
+    var succes = false;
     
     for(var i=0;i<VoteCodes.length;i++)
     {
         if(SumbitedCode === VoteCodes[i] && SumbitedCode != ""  ) //also check if code is not used
         {
-            alert("Kod poprawny");
+            succes = true;
             VoteCodes[i] = ""; //remove used code from array
             return;
         }
     }
-    alert("Niepoprawny kod");
+    ShowVoteAlert(succes);
+}
+function ShowVoteAlert(succes)
+{
+    var Good = '<div class="alert alert-success"><strong>Sukces!</strong> Udało ci sie oddać głos.</div>';
+    var Bad = '<div class="alert alert-danger"><strong>Błąd</strong> Użyty kod jest niepoprawny lub został wykorzystany.</div>';
+    var toUse ="";
+    if(succes) {toUse = Good} else {toUse = Bad};
 }
