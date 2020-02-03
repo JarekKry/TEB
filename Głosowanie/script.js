@@ -43,3 +43,14 @@ function HideVoteAlert()
 {
     document.getElementById("AlertDiv").style.opacity = 0;
 }
+
+function SlowlyApperVoteContainer(CurentPercent)
+{
+    if(CurentPercent>1){return;}
+    else
+    {
+        CurentPercent += 0.01;
+        document.getElementById("VoteContainer").style.opacity = CurentPercent;
+        setTimeout(function() {SlowlyApperVoteContainer(CurentPercent);}, 5);
+    }
+}
