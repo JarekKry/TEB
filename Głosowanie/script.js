@@ -44,13 +44,16 @@ function HideVoteAlert()
     document.getElementById("AlertDiv").style.opacity = 0;
 }
 
-function SlowlyApperVoteContainer(CurentPercent)
+function SlowlyApperVoteContainer(opacity,marginTop) 
 {
-    if(CurentPercent>1){return;}
-    else
-    {
-        CurentPercent += 0.01;
-        document.getElementById("VoteContainer").style.opacity = CurentPercent;
-        setTimeout(function() {SlowlyApperVoteContainer(CurentPercent);}, 5);
-    }
+    if(opacity<1) { opacity += 0.0075; }
+    else { opacity=1; }
+
+    if(marginTop<10) { marginTop += 0.075; }
+    else { marginTop=10; }
+
+    document.getElementById("VoteContainer").style.opacity = opacity;
+    document.getElementById("VoteContainer").style.marginTop = marginTop + '%';
+
+    setTimeout(function() {SlowlyApperVoteContainer(opacity,marginTop);}, 10);
 }
