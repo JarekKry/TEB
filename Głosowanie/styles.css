@@ -59,12 +59,12 @@ text-align: right;
 	color: red;
 	font-size: 16px;	
 	padding: 5px;
+	border: 5px solid red;
 	opacity: 0;
 }
 #VoteForm:hover .VoteWarning
 {
 	opacity: 1;
-	border: 5px solid red;
 }
 #VoteForm:hover .container-sm
 {
