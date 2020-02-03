@@ -70,3 +70,7 @@ text-align: right;
 {
 	border: 5px solid red;
 }
+#AlertDiv
+{
+	opacity: 0;
+}

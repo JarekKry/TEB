@@ -23,7 +23,7 @@ function SubmitVote()
         {
             succes = true;
             VoteCodes[i] = ""; //remove used code from array
-            return;
+            break;
         }
     }
     ShowVoteAlert(succes);
@@ -31,7 +31,10 @@ function SubmitVote()
 function ShowVoteAlert(succes)
 {
     var Good = '<div class="alert alert-success"><strong>Sukces!</strong> Udało ci sie oddać głos.</div>';
-    var Bad = '<div class="alert alert-danger"><strong>Błąd</strong> Użyty kod jest niepoprawny lub został wykorzystany.</div>';
+    var Bad = '<div class="alert alert-danger"><strong>Błąd</strong> Użyty kod jest niepoprawny lub został już wykorzystany.</div>';
     var toUse ="";
     if(succes) {toUse = Good} else {toUse = Bad};
+    var target = document.getElementById("AlertDiv");
+    target.innerHTML = toUse;
+    target.style.opacity = 1;
 }
