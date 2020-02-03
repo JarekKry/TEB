@@ -37,4 +37,9 @@ function ShowVoteAlert(succes)
     var target = document.getElementById("AlertDiv");
     target.innerHTML = toUse;
     target.style.opacity = 1;
+    setTimeout(function() {HideVoteAlert();}, 5000); //will hide alert after specific amout of time
+}
+function HideVoteAlert()
+{
+    document.getElementById("AlertDiv").style.opacity = 0;
 }
