@@ -1,4 +1,0 @@
-body
-{
-	backgroud-color: black;
-}
