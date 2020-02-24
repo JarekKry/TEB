@@ -4,12 +4,16 @@
   <meta charset="UTF-8">
   <meta name="author" content="Jarek Krysztofiński">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css">
 	<title>Głosowanie</title>
 </head>
 <body>
 
-<div class="container-sm">
+<div id="AlertDiv">
+<div class="alert alert-primary" role="alert"> NULL </div> <!-- this invisible alert prevent ugly resizing-->
+</div> <!--alert will be placed inside this-->
+
+<div class="container-sm" id="VoteContainer">
 
 <label> Głosowanie samorządowe 2020 </label> 
 
@@ -29,14 +33,15 @@
   </div>
 </form>
 
-<div  id="VoteForm">
-    <button type="submit" class="btn btn-primary">Zagłosuj</button> 
+<div id="VoteForm">
+    <button type="submit" class="btn btn-primary" onclick="SubmitVote()">Zagłosuj</button> 
     <label class="VoteWarning">Uwaga: Oddanie głosu jest nieodwracalne.</label> 
 </div>
 
 </div>
 
 <footer>Wykonał: Jarek Krysztofiński</footer>
-
+<script src="./script.js"></script>
+<script>SlowlyApperVoteContainer(0,0);</script> <!--slowly show VoteContainer-->
 </body>
 </html>
