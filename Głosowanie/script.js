@@ -26,21 +26,37 @@ function SubmitVote()
             break;
         }
     }
-    ShowVoteAlert(succes);
+
+
+    var radios = document.getElementsByName('person');
+    var personID=-1;
+
+    for (var i = 0, length = radios.length; i < length; i++) //szuka zaznaczonej osoby
+    {
+        if (radios[i].checked) 
+        {
+            personID = radios[i].value;
+            break; //zatrzyma sie gdy znajdzie pierwszą zaznaczoną osobę
+        }
+    }
+    if(personID<0 || SumbitedCode.length != 20){ ShowVoteAlert(false); return;}
+
+    window.location.href = "?Id=" + personID + '&' + "VoteCode=" + SumbitedCode;
 }
-function ShowVoteAlert(succes)
+function ShowVoteAlert(succes,ReloadAfter)
 {
     var Good = '<div class="alert alert-success"><strong>Sukces!</strong> Udało ci sie oddać głos.</div>';
-    var Bad = '<div class="alert alert-danger"><strong>Błąd</strong> Użyty kod jest niepoprawny lub został już wykorzystany.</div>';
+    var Bad = '<div class="alert alert-danger"><strong>Błąd</strong> Użyty kod jest niepoprawny lub został już wykorzystany. Pamiętaj że nie można oddać pustego głosu.</div>';
     var toUse ="";
     if(succes) {toUse = Good} else {toUse = Bad};
     var target = document.getElementById("AlertDiv");
     target.innerHTML = toUse;
     target.style.opacity = 1;
-    setTimeout(function() {HideVoteAlert();}, 5000); //will hide alert after specific amout of time
+    setTimeout(function() {HideVoteAlert(ReloadAfter);}, 5000); //will hide alert after specific amout of time
 }
-function HideVoteAlert()
+function HideVoteAlert(ReloadAfter)
 {
+    if(ReloadAfter){window.location.href="?";}
     document.getElementById("AlertDiv").style.opacity = 0;
 }
 

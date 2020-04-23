@@ -5,6 +5,7 @@
   <meta name="author" content="Jarek Krysztofiński">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
+  <script src="./script.js"></script>
 	<title>Głosowanie</title>
 </head>
 <body>
@@ -41,22 +42,33 @@
 </div>
 
 <?php
-      $Good = '<div class="alert alert-success"><strong>Sukces!</strong> Udało ci sie oddać głos.</div>';
-      $Bad = '<div class="alert alert-danger"><strong>Błąd</strong> Użyty kod jest niepoprawny lub został już wykorzystany.</div>';
+      $Id = -1;
+      $VoteCode = "";
 
-      if($_GET)
-      {
-        echo("get:" + $_GET);
-      }
-      else
-      {
-        echo("noget");
-      }
+      if(isset($_GET['Id'])) {$Id=$_GET['Id'];}
+      if(isset($_GET['VoteCode'])) {$VoteCode=$_GET['VoteCode'];}
 
+      $Good = true;
+
+      if($Id<1 or $Id>5) {$Good=false;}
+      if(strlen($VoteCode)!=20){$Good=false;}
+
+      //tu kiedyś będzie weryfikacja czy kod został już wykorzystany
+
+      if($Good)
+      {
+        echo('<script> ShowVoteAlert(1,1) </script>');
+        echo('<script>SlowlyApperVoteContainer(1,100);</script>');
+      } 
+      else 
+      {
+        //echo('<script> ShowVoteAlert(0) </script>');
+        echo('<script>SlowlyApperVoteContainer(0,0);</script>');
+      }
+      
 ?>
 
+
 <footer>Wykonał: Jarek Krysztofiński</footer>
-<script src="./script.js"></script>
-<script>SlowlyApperVoteContainer(0,0);</script> <!--slowly show VoteContainer-->
 </body>
 </html>
