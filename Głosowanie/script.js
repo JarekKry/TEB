@@ -17,17 +17,6 @@ function SubmitVote()
     var SumbitedCode = document.getElementById("KeyCodeInput").value;
     var succes = false;
     
-    for(var i=0;i<VoteCodes.length;i++)
-    {
-        if(SumbitedCode === VoteCodes[i] && SumbitedCode != ""  ) //also check if code is not used
-        {
-            succes = true;
-            VoteCodes[i] = ""; //remove used code from array
-            break;
-        }
-    }
-
-
     var radios = document.getElementsByName('person');
     var personID=-1;
 
