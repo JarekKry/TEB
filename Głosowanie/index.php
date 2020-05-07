@@ -30,7 +30,7 @@
 
 <form>
   <div class="form-group">   
-    <input type="text" class="form-control-center" id="KeyCodeInput" placeholder="Kod jednorazowy" maxlength="20" > <!-- Unique code max lenght = 20 -->
+    <input type="text" class="form-control-center" id="KeyCodeInput" placeholder="Kod jednorazowy" maxlength="15" > <!-- Unique code max lenght = 20 -->
   </div>
 </form>
 
@@ -51,20 +51,16 @@
       $Good = true;
 
       if($Id<1 or $Id>5) {$Good=false;}
-      if(strlen($VoteCode)!=20){$Good=false;}
+      if(strlen($VoteCode)!=15){$Good=false;}
 
       //tu kiedyś będzie weryfikacja czy kod został już wykorzystany
       $codes = array(
-      "3G0XjpKCDpOWg3XnYYQv",
-      "ZE57GJqI51O5BGiSKtyc",
-      "A6F8fKN99yIhEpj1wU7Q",
-      "TAD2MD3g8aQjU9fIeA8I",
-      "GFt3iPPamWR1BBfCd2dL",
-      "sswsDdAcqwjodkWYx2DB",
-      "5awaUHBaBkfm3zq1OVOK",
-      "cykpKApS4SJl5k7dAwVP",
-      "A6KCz2k78MXwmWJz7LJ5",
-      "YxOt0Y4EMNk26Th3dQ2f");
+      "3G0XjpKCDpOWg3X",
+      "ZE57GJqI51O5BGi",
+      "A6F8fKN99yIhEpj",
+      "TAD2MD3g8aQjU9f",
+      "GFt3iPPamWR1BBf",
+      "YxOt0Y4EMNk26Th");
 
       if(in_array($VoteCode,$codes))
       {       

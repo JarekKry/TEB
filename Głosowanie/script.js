@@ -1,17 +1,3 @@
-var VoteCodes = 
-[
-    "3G0XjpKCDpOWg3XnYYQv",
-    "ZE57GJqI51O5BGiSKtyc",
-    "A6F8fKN99yIhEpj1wU7Q",
-    "TAD2MD3g8aQjU9fIeA8I",
-    "GFt3iPPamWR1BBfCd2dL",
-    "sswsDdAcqwjodkWYx2DB",
-    "5awaUHBaBkfm3zq1OVOK",
-    "cykpKApS4SJl5k7dAwVP",
-    "A6KCz2k78MXwmWJz7LJ5",
-    "YxOt0Y4EMNk26Th3dQ2f",
-]
-
 function SubmitVote()
 {
     var SumbitedCode = document.getElementById("KeyCodeInput").value;
@@ -28,7 +14,7 @@ function SubmitVote()
             break; //zatrzyma sie gdy znajdzie pierwszą zaznaczoną osobę
         }
     }
-    if(personID<0 || SumbitedCode.length != 20){ ShowVoteAlert(false); return;}
+    if(personID<0 || SumbitedCode.length != 15){ ShowVoteAlert(false); return;}
 
     window.location.href = "?Id=" + personID + '&' + "VoteCode=" + SumbitedCode;
 }
