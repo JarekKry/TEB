@@ -18,74 +18,44 @@
 
 <label> Głosowanie samorządowe 2020 </label> 
 
-<div class="form-group">
+<form id="VoteForm" class="form-group" action="vote.php" method="POST" onsubmit="return SubmitVote()">
 
-    <input type="radio" name="person" value="1" class="form-check-input">1 - Konrad Kosiński<br>
+    <input type="radio" name="person" value="1" class="form-check-input" >1 - Konrad Kosiński<br>
     <input type="radio" name="person" value="2" class="form-check-input">2 - Marta Kowalska<br>
     <input type="radio" name="person" value="3" class="form-check-input">3 - Julia Krupa<br>
     <input type="radio" name="person" value="4" class="form-check-input">4 - Apolonia Wójcik<br>
     <input type="radio" name="person" value="5" class="form-check-input">5 - Barbara Piotrowska<br>
 
-</div>
-
-<form>
-  <div class="form-group">   
-    <input type="text" class="form-control-center" id="KeyCodeInput" placeholder="Kod jednorazowy" maxlength="15" > <!-- Unique code max lenght = 20 -->
-  </div>
+    <input type="text" name="UniqueCode" class="form-control-center" id="KeyCodeInput" placeholder="Kod jednorazowy" maxlength="15" > <!-- Unique code max lenght = 15 -->
+      
+    <br> <button type="submit" class="btn btn-primary">Zagłosuj </button>
+    <label class="VoteWarning">Uwaga: Oddanie głosu jest nieodwracalne.</label>
 </form>
 
-<div id="VoteForm">
-    <button type="submit" class="btn btn-primary" onclick="SubmitVote()">Zagłosuj</button> 
-    <label class="VoteWarning">Uwaga: Oddanie głosu jest nieodwracalne.</label> 
 </div>
 
-</div>
-
-<?php
-      $Id = -1;
-      $VoteCode = "";
-
-      if(isset($_GET['Id'])) {$Id=$_GET['Id'];}
-      if(isset($_GET['VoteCode'])) {$VoteCode=$_GET['VoteCode'];}
-
-      $Good = true;
-
-      if($Id<1 or $Id>5) {$Good=false;}
-      if(strlen($VoteCode)!=15){$Good=false;}
-
-      //tu kiedyś będzie weryfikacja czy kod został już wykorzystany
-      $codes = array(
-      "3G0XjpKCDpOWg3X",
-      "ZE57GJqI51O5BGi",
-      "A6F8fKN99yIhEpj",
-      "TAD2MD3g8aQjU9f",
-      "GFt3iPPamWR1BBf",
-      "YxOt0Y4EMNk26Th");
-
-      if(in_array($VoteCode,$codes))
-      {       
-        // tu cza dodać usuwanie kodów po wykorzystaniu
-      }else{$Good=false;}
-
-
-      if($Good)
+<script>SlowlyApperVoteContainer(1,5);</script>
+<!-- no idea why but this function need to be inside html to work onsubmit :/ -->
+<script> 
+      function SubmitVote()
       {
-        echo('<script> ShowVoteAlert(1,1) </script>');
-        echo('<script>SlowlyApperVoteContainer(1,100);</script>');
-      } 
-      else if ($Id == -1 && $VoteCode =="" )
-      {
-        //echo('<script> ShowVoteAlert(0,0) </script>');;
-        echo('<script>SlowlyApperVoteContainer(0,0);</script>');
+          var SumbitedCode = document.getElementById("KeyCodeInput").value;
+          var succes = false;
+          
+          var radios = document.getElementsByName('person');
+          var personID=-1;
+
+          for (var i = 0, length = radios.length; i < length; i++) //szuka zaznaczonej osoby
+          {
+              if (radios[i].checked) 
+              {
+                  personID = radios[i].value;
+                  break; //zatrzyma sie gdy znajdzie pierwszą zaznaczoną osobę
+              }
+          }
+          if(personID<0 || SumbitedCode.length != 15){ ShowVoteAlert(false); return false;}
       }
-      if(!$Good && $Id != -1 && $VoteCode != "")
-      {
-        echo('<script> ShowVoteAlert(0,0) </script>');
-        echo('<script>SlowlyApperVoteContainer(1,100);</script>');
-      }
-      
-?>
-
+</script>
 
 <footer>Wykonał: Jarek Krysztofiński</footer>
 </body>
