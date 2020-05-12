@@ -1,9 +1,9 @@
 <?php
 
-    $folderName =  getcwd()."\data-214Sr1sSXepR_Je23Cs9oEQMaJt_EGb1J0KFuJ3g_kdZzbvLRfBRmAmypDSqpK_7";
-    $personsFile = $folderName."\personsID.txt";
-    $votesFile = $folderName.'\votes.txt';
-    $codesFile = $folderName."\codes.txt";
+    $folderName =  "data-214Sr1sSXepR_Je23Cs9oEQMaJt_EGb1J0KFuJ3g_kdZzbvLRfBRmAmypDSqpK_7/";
+    $personsFile = $folderName."personsID.txt";
+    $votesFile = $folderName.'votes.txt';
+    $codesFile = $folderName."codes.txt";
 
     function isInFile($search,$filename)
     {        
