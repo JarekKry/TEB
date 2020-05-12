@@ -1,18 +1,65 @@
 <?php
+
+    $folderName =  getcwd()."\data-214Sr1sSXepR_Je23Cs9oEQMaJt_EGb1J0KFuJ3g_kdZzbvLRfBRmAmypDSqpK_7";
+    $personsFile = $folderName."\personsID.txt";
+    $votesFile = $folderName.'\votes.txt';
+    $codesFile = $folderName."\codes.txt";
+
+    function isInFile($search,$filename)
+    {        
+        $file = file($filename);
+
+        for($i=0;$i<count($file);$i++) 
+        {
+            $line = trim($file[$i]);
+            if($line == $search) 
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    function replaceInFile($text,$newText,$filename)
+    {
+        $file = file($filename);
+
+        for($i=0;$i<count($file);$i++) 
+        {
+            $line = trim($file[$i]);
+            if($line == $text) 
+            {
+                $file[$i]=$newText."\n";
+            }
+        }
+
+        file_put_contents($filename,$file);
+    }
+    function iterateVote($voteNumber)
+    {
+        $file = file($GLOBALS['votesFile']);
+
+            $line = trim($file[$voteNumber]);
+            $line++;
+
+            $file[$voteNumber]=$line."\n";
+
+        file_put_contents($GLOBALS['votesFile'],$file);
+    }
+
+
     function VerifyCode($code) //check if code exist and can be used
     {
-        if(strlen($code)==15)
+        if(strlen($code)==15 and isInFile($code,$GLOBALS['codesFile']))
         {
-            // need to be verified here
             return true;
         }
         return false;
     }
     function VerifyPerson($person) //check if person exist 
     {
-        if(is_numeric($person))
+        if(is_numeric($person) and isInFile($person,$GLOBALS['personsFile']))
         {
-            // need to be verified here
             return true;
         }
         return false;
@@ -22,7 +69,8 @@
     {
         if(VerifyCode($code) and VerifyPerson($person))
         {
-            //files including codes and vote count need to be edited here
+            replaceInFile($code,"USED",$GLOBALS['codesFile']); //make code unussable
+            iterateVote($person); //iterate vote
             return true;
         }
         return false;
@@ -63,7 +111,13 @@
     {
        echo('<p style="color:green; text-align: center;"> Dziękujemy za oddanie głosu! </p>');
        echo('<script>ShowVoteAlert(true,false);</script>');
-    }else{echo('<p style="color:red; text-align: center;"> Coś poszło nie tak :( </p>');}
+       echo('<script>goBackHistory(3000);</script>');
+    }else
+    {
+        echo('<p style="color:red; text-align: center;"> Coś poszło nie tak :( </p>');
+        echo('<p style="color:#9c2727; text-align: center;"> Kod może być już wykorzystany </p>');
+        echo('<script>goBackHistory(3000);</script>');
+    }
 ?>
 
 
