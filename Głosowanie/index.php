@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <meta name="author" content="Jarek Krysztofiński">
@@ -20,7 +21,7 @@
 
 <form id="VoteForm" class="form-group" action="vote.php" method="POST" onsubmit="return SubmitVote()">
 
-    <input type="radio" name="person" value="1" class="form-check-input" >1 - Konrad Kosiński<br>
+    <input type="radio" name="person" value="1" class="form-check-input">1 - Konrad Kosiński<br>
     <input type="radio" name="person" value="2" class="form-check-input">2 - Marta Kowalska<br>
     <input type="radio" name="person" value="3" class="form-check-input">3 - Julia Krupa<br>
     <input type="radio" name="person" value="4" class="form-check-input">4 - Apolonia Wójcik<br>
@@ -34,7 +35,17 @@
 
 </div>
 
-<script>SlowlyApperVoteContainer(1,5);</script>
+<?php
+  session_start();
+  if(isset($_SESSION['VoteStatus']) and $_SESSION['VoteStatus']=='Failed' )
+  {
+    $_SESSION['VoteStatus']="Unknown";
+    echo('<script>ShowVoteAlert(false,false);</script>');
+    echo('<script>SlowlyApperVoteContainer(1,100);</script>');
+  }
+  else{echo('<script>SlowlyApperVoteContainer(0.5,5);</script>');}
+?>
+
 <!-- no idea why but this function need to be inside html to work onsubmit :/ -->
 <script> 
       function SubmitVote()
