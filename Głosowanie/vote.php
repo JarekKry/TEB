@@ -39,10 +39,10 @@
     {
         $file = file($GLOBALS['votesFile']);
 
-            $line = trim($file[$voteNumber]);
+            $line = trim($file[$voteNumber-1]);
             $line++;
 
-            $file[$voteNumber]=$line."\n";
+            $file[$voteNumber-1]=$line."\n";
 
         file_put_contents($GLOBALS['votesFile'],$file);
     }
