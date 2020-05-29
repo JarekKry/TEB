@@ -1,6 +1,6 @@
 <?php
 
-    $conn = @mysqli_connect("localhost","root","","jkrysztofinski_VoteTeb") or die("Błąd połączenia z bazą danych");
+    $conn = @mysqli_connect("localhost","root","","jkrysztofinski_VoteTEB") or die("Błąd połączenia z bazą danych");
 
     //Użyte metody powinny uodpornić skrypt na ataki SQL injection... chyba 😐
 

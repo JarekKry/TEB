@@ -1,5 +1,8 @@
-<!DOCTYPE html>
 <html>
+
+<?php 
+  $conn = @mysqli_connect("localhost","root","","jkrysztofinski_VoteTEB") or die("Błąd połączenia z bazą danych");
+?>
 
 <head>
   <meta charset="UTF-8">
@@ -21,11 +24,19 @@
 
 <form id="VoteForm" class="form-group" action="vote.php" method="POST" onsubmit="return SubmitVote()">
 
-    <input type="radio" name="person" value="1" class="form-check-input">1 - Konrad Kosiński<br>
-    <input type="radio" name="person" value="2" class="form-check-input">2 - Marta Kowalska<br>
-    <input type="radio" name="person" value="3" class="form-check-input">3 - Julia Krupa<br>
-    <input type="radio" name="person" value="4" class="form-check-input">4 - Apolonia Wójcik<br>
-    <input type="radio" name="person" value="5" class="form-check-input">5 - Barbara Piotrowska<br>
+<?php
+        $stmt = mysqli_prepare($GLOBALS['conn'],"SELECT ID,PersonName FROM Candidates WHERE 1");  
+
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt,$outID,$outName);
+
+        while(mysqli_stmt_fetch($stmt))
+        {
+          echo('<input type="radio" name="person" value="'.$outID.'" class="form-check-input">'.$outName.'<br>');         
+        }
+    
+        mysqli_stmt_close($stmt); 
+?>
 
     <input type="text" name="UniqueCode" class="form-control-center" id="KeyCodeInput" placeholder="Kod jednorazowy" maxlength="15" > <!-- Unique code max lenght = 15 -->
       
