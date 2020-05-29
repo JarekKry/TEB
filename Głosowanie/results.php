@@ -54,7 +54,9 @@
       ?>
 
         ]);
-        var options = {'title':'Wyniki głosowania', is3D: true, sliceVisibilityThreshold:0};
+        var options = {title:'Wyniki głosowania', is3D: true, sliceVisibilityThreshold:0, fontSize: 15, chartArea:{right:0,left:0,top:20,width:'90%',height:'90%'}
+        ,legend:{position: 'right', textStyle: {color: 'black', fontSize: 16}}
+      };
 
         var chart = new google.visualization.PieChart(document.getElementById('chart'));
         chart.draw(data, options);
@@ -64,8 +66,8 @@
 
   <body>
 
-    <div class="container-sm" id="VoteContainer" style="max-width:800;" >
-    <div id="chart" style="width: 780px; height: 500px;"> </div>
+    <div class="container-sm" id="VoteContainer" style="max-width:800; text-align:center;" >
+    <div id="chart" style="width:750px; height:300px; margin:auto"></div>
     <button onclick="goToPage('index.php')" class="btn btn-primary"> Wróć </button>
     </div>
 
