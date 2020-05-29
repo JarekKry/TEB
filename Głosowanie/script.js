@@ -2,7 +2,7 @@
 function ShowVoteAlert(succes,ReloadAfter)
 {
     var Good = '<div class="alert alert-success"><strong>Sukces!</strong> Udało ci sie oddać głos.</div>';
-    var Bad = '<div class="alert alert-danger"><strong>Błąd</strong> Użyty kod jest niepoprawny. Pamiętaj że nie można oddać pustego głosu.</div>';
+    var Bad = '<div class="alert alert-danger"><strong>Błąd</strong> Użyty kod jest niepoprawny.</div>';
     var toUse ="";
     if(succes) {toUse = Good} else {toUse = Bad};
     var target = document.getElementById("AlertDiv");
@@ -30,7 +30,7 @@ function SlowlyApperVoteContainer(opacity,marginTop)
     setTimeout(function() {SlowlyApperVoteContainer(opacity,marginTop);}, 10);
 }
 
-function goBackHistory(afterMiliseconds)
+function goToPage(name,afterMiliseconds)
 {
-    setTimeout(function() {window.history.back();},afterMiliseconds);
+    setTimeout(function() {location.href=name;},afterMiliseconds);
 }

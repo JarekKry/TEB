@@ -1,6 +1,6 @@
 <?php
 
-    $conn = @mysqli_connect("localhost","root","","jkrysztofinski_VoteTeb") or die("Błąd połączenia z bazą danych");
+    $conn = @mysqli_connect("localhost","root","","jkrysztofinski_VoteTEB") or die("Błąd połączenia z bazą danych");
 
     //Użyte metody powinny uodpornić skrypt na ataki SQL injection... chyba 😐
 
@@ -96,7 +96,7 @@
     if($voted)
     {
        echo('<p style="color:green; text-align: center;"> Dziękujemy za oddanie głosu! </p>');
-       echo('<script>ShowVoteAlert(true,false); goBackHistory(3000); </script>');
+       echo('<script>ShowVoteAlert(true,false); goToPage("results.php",3000); </script>');
     }else
     {
         $_SESSION['VoteStatus']="Failed";
