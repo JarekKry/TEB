@@ -31,13 +31,13 @@
 
         while(mysqli_stmt_fetch($stmt))
         {
-          echo('<input type="radio" name="person" value="'.$outID.'" class="form-check-input">'.$outName.'<br>');         
+          echo('<input type="radio" name="person" value="'.$outID.'" class="form-check-input" required>'.$outName.'<br>');         
         }
     
         mysqli_stmt_close($stmt); 
 ?>
 
-    <input type="text" name="UniqueCode" class="form-control-center" id="KeyCodeInput" placeholder="Kod jednorazowy" maxlength="15" > <!-- Unique code max lenght = 15 -->
+    <input type="text" name="UniqueCode" class="form-control-center" id="KeyCodeInput" placeholder="Kod jednorazowy" maxlength="15" required> <!-- Unique code max lenght = 15 -->
       
     <br> <button type="submit" class="btn btn-primary">Zagłosuj </button>
     <label class="VoteWarning">Uwaga: Oddanie głosu jest nieodwracalne.</label>
