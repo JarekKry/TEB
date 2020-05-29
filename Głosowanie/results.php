@@ -70,5 +70,6 @@
     </div>
 
     <script>SlowlyApperVoteContainer(0.5,5);</script>
+    <footer> Wykonał: Jarek Krysztofiński</footer>
   </body>
 </html>
