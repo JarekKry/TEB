@@ -3,7 +3,7 @@
 
     function GetUnusedVotes()
     {
-      $stmt = mysqli_prepare($GLOBALS['conn'],"SELECT COUNT(CandidateID) FROM votecodes WHERE CandidateID = 0");  
+      $stmt = mysqli_prepare($GLOBALS['conn'],"SELECT COUNT(CandidateID) FROM VoteCodes WHERE CandidateID = 0");  
 
       mysqli_stmt_execute($stmt);
       mysqli_stmt_bind_result($stmt,$outVotes);
@@ -36,7 +36,7 @@
             ['Name', 'Votes']
       <?php
         
-        $stmt = mysqli_prepare($GLOBALS['conn'],"SELECT candidates.PersonName, COUNT(votecodes.CandidateID) Votes FROM candidates LEFT JOIN votecodes ON candidates.ID = votecodes.CandidateID GROUP BY candidates.PersonName ORDER BY Votes DESC");  
+        $stmt = mysqli_prepare($GLOBALS['conn'],"SELECT Candidates.PersonName, COUNT(VoteCodes.CandidateID) Votes FROM Candidates LEFT JOIN VoteCodes ON Candidates.ID = VoteCodes.CandidateID GROUP BY Candidates.PersonName ORDER BY Votes DESC");  
 
         mysqli_stmt_execute($stmt);
         mysqli_stmt_bind_result($stmt,$outName,$outVotes);
