@@ -39,10 +39,10 @@
     {
         $file = file($GLOBALS['votesFile']);
 
-            $line = trim($file[$voteNumber]);
+            $line = trim($file[$voteNumber-1]);
             $line++;
 
-            $file[$voteNumber]=$line."\n";
+            $file[$voteNumber-1]=$line."\n";
 
         file_put_contents($GLOBALS['votesFile'],$file);
     }
@@ -107,27 +107,21 @@
 <div class="container-sm" id="VoteContainer">
 
 <?php
+    session_start();
     if($voted)
     {
        echo('<p style="color:green; text-align: center;"> Dziękujemy za oddanie głosu! </p>');
-       echo('<script>ShowVoteAlert(true,false);</script>');
-       echo('<script>goBackHistory(3000);</script>');
+       echo('<script>ShowVoteAlert(true,false); goBackHistory(3000); </script>');
     }else
     {
-        echo('<p style="color:red; text-align: center;"> Coś poszło nie tak :( </p>');
-        echo('<p style="color:#9c2727; text-align: center;"> Kod może być już wykorzystany </p>');
-        echo('<script>goBackHistory(3000);</script>');
+        $_SESSION['VoteStatus']="Failed";
+        header('Location:index.php');
     }
 ?>
 
-
-
-
 </div>
 
-<script>SlowlyApperVoteContainer(1,5);</script>
-
-
+<script>SlowlyApperVoteContainer(0.5,100);</script>
 
 <footer>Wykonał: Jarek Krysztofiński</footer>
 </body>
