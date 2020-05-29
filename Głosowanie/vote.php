@@ -1,76 +1,61 @@
 <?php
 
-    $folderName =  "data-214Sr1sSXepR_Je23Cs9oEQMaJt_EGb1J0KFuJ3g_kdZzbvLRfBRmAmypDSqpK_7/";
-    $personsFile = $folderName."personsID.txt";
-    $votesFile = $folderName.'votes.txt';
-    $codesFile = $folderName."codes.txt";
+    $conn = @mysqli_connect("localhost","root","","jkrysztofinski_VoteTeb") or die("Błąd połączenia z bazą danych");
 
-    function isInFile($search,$filename)
-    {        
-        $file = file($filename);
+    //Użyte metody powinny uodpornić skrypt na ataki SQL injection... chyba 😐
 
-        for($i=0;$i<count($file);$i++) 
-        {
-            $line = trim($file[$i]);
-            if($line == $search) 
-            {
-                return true;
-            }
-        }
+    function Code_IsGood($code) //return true if code exist and can be used
+    {       
+        if(strlen($code) != 15) {return false;}
+        $stmt = mysqli_prepare($GLOBALS['conn'],"SELECT Code,CandidateID FROM VoteCodes WHERE BINARY Code=?"); 
+
+        mysqli_stmt_bind_param($stmt,"s",$code);       
+        mysqli_stmt_execute($stmt);
+
+        mysqli_stmt_bind_result($stmt,$outCode,$outId);
+        mysqli_stmt_fetch($stmt);
+    
+        mysqli_stmt_close($stmt); 
+
+        if($outCode == $code and $outId == 0) {return true;}
 
         return false;
     }
-    function replaceInFile($text,$newText,$filename)
+
+    function ID_IsGood($Id) //return true if id exist in database
     {
-        $file = file($filename);
+        if(!is_numeric($Id)) {return false;}
+        $stmt = mysqli_prepare($GLOBALS['conn'],"SELECT ID FROM Candidates WHERE ID=?"); 
 
-        for($i=0;$i<count($file);$i++) 
-        {
-            $line = trim($file[$i]);
-            if($line == $text) 
-            {
-                $file[$i]=$newText."\n";
-            }
-        }
+        mysqli_stmt_bind_param($stmt,"i",$Id);       
+        mysqli_stmt_execute($stmt);
 
-        file_put_contents($filename,$file);
-    }
-    function iterateVote($voteNumber)
-    {
-        $file = file($GLOBALS['votesFile']);
+        mysqli_stmt_bind_result($stmt,$outId);
+        mysqli_stmt_fetch($stmt);
+    
+        mysqli_stmt_close($stmt); 
 
-            $line = trim($file[$voteNumber-1]);
-            $line++;
+        if($Id == $outId) {return true;}
 
-            $file[$voteNumber-1]=$line."\n";
-
-        file_put_contents($GLOBALS['votesFile'],$file);
-    }
-
-
-    function VerifyCode($code) //check if code exist and can be used
-    {
-        if(strlen($code)==15 and isInFile($code,$GLOBALS['codesFile']))
-        {
-            return true;
-        }
-        return false;
-    }
-    function VerifyPerson($person) //check if person exist 
-    {
-        if(is_numeric($person) and isInFile($person,$GLOBALS['personsFile']))
-        {
-            return true;
-        }
         return false;
     }
 
-    function HandleVote($person,$code) 
+    function UseCode($code,$Id)
     {
-        if(VerifyCode($code) and VerifyPerson($person))
+        $stmt = mysqli_prepare($GLOBALS['conn'],"UPDATE VoteCodes SET CandidateID=? WHERE BINARY Code=?"); 
+
+        mysqli_stmt_bind_param($stmt,"is",$Id,$code);       
+        mysqli_stmt_execute($stmt);
+   
+        mysqli_stmt_close($stmt); 
+    }
+
+
+    function HandleVote($code,$id) 
+    {
+        if(ID_IsGood($id) and Code_IsGood($code)) //  and VerifyPerson($person)
         {
-            replaceInFile($code,"USED",$GLOBALS['codesFile']); //make code unussable
-            iterateVote($person); //iterate vote
+            UseCode($code,$id);
             return true;
         }
         return false;
@@ -82,9 +67,9 @@
         $code = $_POST["UniqueCode"];
         $person = $_POST["person"];
 
-        $voted = HandleVote($person,$code);
+        $voted = HandleVote($code,$person);
 
-    }else{$voted = false;}
+    } else { $voted = false; }
 
 ?>
 
