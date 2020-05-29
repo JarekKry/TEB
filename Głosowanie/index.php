@@ -1,9 +1,8 @@
-<html>
-
 <?php 
   $conn = @mysqli_connect("localhost","root","","jkrysztofinski_VoteTEB") or die("Błąd połączenia z bazą danych");
 ?>
 
+<html>
 <head>
   <meta charset="UTF-8">
   <meta name="author" content="Jarek Krysztofiński">
@@ -79,6 +78,7 @@
       }
 </script>
 
-<footer>Wykonał: Jarek Krysztofiński</footer>
+<footer style="text-align:left;"> <button onclick="goToPage('results.php')" class="btn btn-primary"> Wyniki </button> <footer>
+<footer> Wykonał: Jarek Krysztofiński</footer>
 </body>
 </html>

@@ -30,7 +30,7 @@ function SlowlyApperVoteContainer(opacity,marginTop)
     setTimeout(function() {SlowlyApperVoteContainer(opacity,marginTop);}, 10);
 }
 
-function goBackHistory(afterMiliseconds)
+function goToPage(name,afterMiliseconds)
 {
-    setTimeout(function() {window.history.back();},afterMiliseconds);
+    setTimeout(function() {location.href=name;},afterMiliseconds);
 }

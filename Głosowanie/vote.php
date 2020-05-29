@@ -96,7 +96,7 @@
     if($voted)
     {
        echo('<p style="color:green; text-align: center;"> Dziękujemy za oddanie głosu! </p>');
-       echo('<script>ShowVoteAlert(true,false); goBackHistory(3000); </script>');
+       echo('<script>ShowVoteAlert(true,false); goToPage("results.php",3000); </script>');
     }else
     {
         $_SESSION['VoteStatus']="Failed";
